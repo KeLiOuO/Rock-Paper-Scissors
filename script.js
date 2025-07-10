@@ -1,6 +1,9 @@
 let humanScore = 0;
 let computerScore = 0;
-playGame();
+const choice = document.querySelector("#choice");
+choice.addEventListener("click", (event) => {
+  playRound(event.target.id);
+});
 function getComputerChoice() {
   let num = Math.random() * 3;
   if (num < 1) {
@@ -12,12 +15,19 @@ function getComputerChoice() {
   }
 }
 
-function getHumanChoice() {
-  return prompt("请出拳");
+function getHumanChoice(id) {
+  switch (id) {
+    case "rock":
+      return "石头";
+    case "scissors":
+      return "剪刀";
+    case "paper":
+      return "布";
+  }
 }
 
-function playRound() {
-  let human = getHumanChoice();
+function playRound(id) {
+  let human = getHumanChoice(id);
   let computer = getComputerChoice();
   if (human === computer) {
     console.log(`平局`);
